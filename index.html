@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сайт с мобильным меню</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Анимация для выезжания меню снизу */
+        .menu-hidden {
+            transform: translateY(100%);
+        }
+        .menu-visible {
+            transform: translateY(0);
+        }
+        .menu-transition {
+            transition: transform 0.3s ease-in-out;
+        }
+        /* Анимация для иконки гамбургера */
+        .hamburger span {
+            transition: all 0.3s ease-in-out;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Шапка сайта -->
+    <header class="bg-white shadow-md fixed w-full top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-blue-600">
+                МойСайт
+            </div>
+
+            <!-- Десктопное меню -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="text-gray-700 hover:text-blue-600 transition">Главная</a>
+                <a href="#about" class="text-gray-700 hover:text-blue-600 transition">О нас</a>
+                <a href="#services" class="text-gray-700 hover:text-blue-600 transition">Услуги</a>
+                <a href="#contact" class="text-gray-700 hover:text-blue-600 transition">Контакты</a>
+            </nav>
+
+            <!-- Кнопка мобильного меню -->
+            <button id="menuBtn" class="md:hidden hamburger flex flex-col space-y-1.5 p-2">
+                <span class="block w-6 h-0.5 bg-gray-800"></span>
+                <span class="block w-6 h-0.5 bg-gray-800"></span>
+                <span class="block w-6 h-0.5 bg-gray-800"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="pt-20">
+        <!-- Секция Hero -->
+        <section id="home" class="container mx-auto px-4 py-16">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-4">
+                    Добро пожаловать!
+                </h1>
+                <p class="text-xl text-gray-600 mb-8">
+                    Современный сайт с красивым мобильным меню
+                </p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition">
+                    Начать
+                </button>
+            </div>
+        </section>
+
+        <!-- Секция О нас -->
+        <section id="about" class="bg-white py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-8">О нас</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center p-6">
+                        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Быстро</h3>
+                        <p class="text-gray-600">Высокая производительность и скорость загрузки</p>
+                    </div>
+                    <div class="text-center p-6">
+                        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Адаптивно</h3>
+                        <p class="text-gray-600">Отлично работает на всех устройствах</p>
+                    </div>
+                    <div class="text-center p-6">
+                        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Современно</h3>
+                        <p class="text-gray-600">Использует последние технологии</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция Услуги -->
+        <section id="services" class="py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-8">Наши услуги</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition">
+                        <h3 class="text-xl font-semibold mb-2">Веб-разработка</h3>
+                        <p class="text-gray-600">Создание современных сайтов</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition">
+                        <h3 class="text-xl font-semibold mb-2">Дизайн</h3>
+                        <p class="text-gray-600">Красивый UI/UX дизайн</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition">
+                        <h3 class="text-xl font-semibold mb-2">Поддержка</h3>
+                        <p class="text-gray-600">Техническая поддержка 24/7</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition">
+                        <h3 class="text-xl font-semibold mb-2">Консалтинг</h3>
+                        <p class="text-gray-600">Экспертные консультации</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция Контакты -->
+        <section id="contact" class="bg-white py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-8">Свяжитесь с нами</h2>
+                <div class="max-w-md mx-auto">
+                    <form class="space-y-4">
+                        <input type="text" placeholder="Ваше имя" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+                        <input type="email" placeholder="Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+                        <textarea placeholder="Сообщение" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
+                        <button type="submit" class="w-full bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition">
+                            Отправить
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Футер -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 МойСайт. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Оверлей для затемнения фона -->
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
+
+    <!-- Мобильное меню (выезжает снизу) -->
+    <nav id="mobileMenu" class="fixed bottom-0 left-0 right-0 bg-white z-50 menu-transition menu-hidden rounded-t-3xl shadow-2xl md:hidden">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold text-gray-900">Меню</h3>
+                <button id="closeMenuBtn" class="text-gray-600 hover:text-gray-900">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <ul class="space-y-4">
+                <li>
+                    <a href="#home" class="menu-link block text-lg text-gray-700 hover:text-blue-600 transition py-2">
+                        🏠 Главная
+                    </a>
+                </li>
+                <li>
+                    <a href="#about" class="menu-link block text-lg text-gray-700 hover:text-blue-600 transition py-2">
+                        ℹ️ О нас
+                    </a>
+                </li>
+                <li>
+                    <a href="#services" class="menu-link block text-lg text-gray-700 hover:text-blue-600 transition py-2">
+                        ⚙️ Услуги
+                    </a>
+                </li>
+                <li>
+                    <a href="#contact" class="menu-link block text-lg text-gray-700 hover:text-blue-600 transition py-2">
+                        📧 Контакты
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <script>
+        // Элементы
+        const menuBtn = document.getElementById('menuBtn');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const overlay = document.getElementById('overlay');
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        // Функция открытия меню
+        function openMenu() {
+            mobileMenu.classList.remove('menu-hidden');
+            mobileMenu.classList.add('menu-visible');
+            overlay.classList.remove('hidden');
+            menuBtn.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Блокируем прокрутку
+        }
+
+        // Функция закрытия меню
+        function closeMenu() {
+            mobileMenu.classList.remove('menu-visible');
+            mobileMenu.classList.add('menu-hidden');
+            overlay.classList.add('hidden');
+            menuBtn.classList.remove('active');
+            document.body.style.overflow = ''; // Разблокируем прокрутку
+        }
+
+        // События
+        menuBtn.addEventListener('click', openMenu);
+        closeMenuBtn.addEventListener('click', closeMenu);
+        overlay.addEventListener('click', closeMenu);
+
+        // Закрытие меню при клике на пункт меню
+        menuLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        // Закрытие меню при нажатии Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeMenu();
+            }
+        });
+    </script>
+</body>
+</html>
