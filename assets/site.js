@@ -1,0 +1,10 @@
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const nav=$('nav.main'),b=$('.burger');
+b?.addEventListener('click',()=>{const o=nav.classList.toggle('open');b.setAttribute('aria-expanded',o)});
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.12});
+$$('.reveal').forEach(el=>io.observe(el));
+$$('.filters').forEach(f=>f.addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;
+ $$('.chip',f).forEach(x=>x.setAttribute('aria-pressed',x===c));
+ $$('[data-cat]').forEach(el=>el.hidden=c.dataset.f!=='all'&&!el.dataset.cat.split(' ').includes(c.dataset.f))}));
+$('#lead-form')?.addEventListener('submit',e=>{e.preventDefault();
+ e.target.innerHTML='<h3>Спасибо! 🎉</h3><p>Мы свяжемся с вами в течение рабочего дня, чтобы подобрать удобное время для бесплатного пробного урока.</p>'});
